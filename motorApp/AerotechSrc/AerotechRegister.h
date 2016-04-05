@@ -1,0 +1,49 @@
+/*
+FILENAME...	AerotechRegister.h
+USAGE... This file contains function prototypes for ACS IOC shell commands.
+
+Version:        $Revision: 17434 $
+Modified By:    $Author: sluiter $
+Last Modified:  $Date: 2014-05-21 11:43:51 -0500 (Wed, 21 May 2014) $
+HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/AerotechSrc/AerotechRegister.h $
+*/
+
+/*
+ *      Original Author: Ron Sluiter
+ *      Date: 05/19/03
+ *
+ *      Experimental Physics and Industrial Control System (EPICS)
+ *
+ *      Copyright 1991, the Regents of the University of California,
+ *      and the University of Chicago Board of Governors.
+ *
+ *      This software was produced under  U.S. Government contracts:
+ *      (W-7405-ENG-36) at the Los Alamos National Laboratory,
+ *      and (W-31-109-ENG-38) at Argonne National Laboratory.
+ *
+ *      Initial development by:
+ *	      The Controls and Automation Group (AT-8)
+ *	      Ground Test Accelerator
+ *	      Accelerator Technology Division
+ *	      Los Alamos National Laboratory
+ *
+ *      Co-developed with
+ *	      The Controls and Computing Group
+ *	      Accelerator Systems Division
+ *	      Advanced Photon Source
+ *	      Argonne National Laboratory
+ *
+ * Modification Log:
+ * -----------------
+ * .01	2008/04/10 caw Initial support for Ensemble
+ * .02	2009/04/29 hcf Added support for Soloist
+ * .03	2009/07/28 cjb Added support for Ensemble asynMotor
+ * .04  2013/11/26 cjb Added support for A3200 asynMotor
+ */
+
+#include "motor.h"
+#include "motordrvCom.h"
+#include "drvEnsembleAsyn.h"
+#include "drvSoloist.h"
+#include "drvA3200Asyn.h"
+
