@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE=1
+
+%:
+	dh $@ --with epics -Sepicsmake --parallel
+
+override_dh_install:
+	dh_install --fail-missing

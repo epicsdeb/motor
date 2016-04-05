@@ -1,0 +1,78 @@
+Source: motor
+Section: libdevel
+Priority: extra
+Maintainer: mdavidsaver <mdavidsaver@gmail.com>
+Build-Depends: debhelper (>= 9), epics-debhelper (>= 8.14~),
+               epics-dev,
+               epics-asyn-dev,
+               epics-busy-dev,
+               epics-seq-dev,
+XS-Rtems-Build-Depends: rtems-epics, rtems-asyn, rtems-busy, rtems-seq,
+Standards-Version: 3.9.6
+Homepage: http://aps.anl.gov/bcda/synApps/motor/index.html
+Vcs-Git: https://github.com/epicsdeb/motor.git
+Vcs-Browser: https://github.com/epicsdeb/motor
+
+Package: epics-motor-dev
+Architecture: any
+Depends: libmotor6.9 (= ${binary:Version}),
+         ${shlibs:Depends}, ${misc:Depends},
+         ${epics:Depends},
+Conflicts: epics-synapps,
+Description: Motor controller drivers
+ Infrastructure and drivers for various motor controllers
+ .
+ This package contains headers and libraries needed at build time.
+
+Package: libmotor6.9
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+Conflicts: epics-synapps,
+Description: Motor controller drivers
+ Infrastructure and drivers for various motor controllers
+ .
+ This package contains runtime libraries
+
+Package: rtems-motor-mvme2100
+Architecture: all
+Depends: epics-motor-dev (>= ${source:Version}),
+         epics-motor-dev (<< ${source:Version}.1~),
+         ${rtems:Depends}, ${misc:Depends},
+Conflicts: rtems-synapps-mvme2100,
+Description: Motor controller drivers
+ Infrastructure and drivers for various motor controllers
+ .
+ This package contains support for the MVME2100 VME SBC
+
+Package: rtems-motor-mvme3100
+Architecture: all
+Depends: epics-motor-dev (>= ${source:Version}),
+         epics-motor-dev (<< ${source:Version}.1~),
+         ${rtems:Depends}, ${misc:Depends},
+Conflicts: rtems-synapps-mvme3100,
+Description: Motor controller drivers
+ Infrastructure and drivers for various motor controllers
+ .
+ This package contains support for the MVME3100 VME SBC
+
+Package: rtems-motor-mvme5500
+Architecture: all
+Depends: epics-motor-dev (>= ${source:Version}),
+         epics-motor-dev (<< ${source:Version}.1~),
+         ${rtems:Depends}, ${misc:Depends},
+Conflicts: rtems-synapps-mvme5500,
+Description: Motor controller drivers
+ Infrastructure and drivers for various motor controllers
+ .
+ This package contains support for the MVME5500 VME SBC
+
+Package: rtems-motor-pc386
+Architecture: all
+Depends: epics-motor-dev (>= ${source:Version}),
+         epics-motor-dev (<< ${source:Version}.1~),
+         ${rtems:Depends}, ${misc:Depends},
+Conflicts: rtems-synapps-pc386,
+Description: Motor controller drivers
+ Infrastructure and drivers for various motor controllers
+ .
+ This package contains support for the pc386 BSP

@@ -1,0 +1,50 @@
+From: Michael Davidsaver <mdavidsaver@gmail.com>
+Date: Mon, 4 Apr 2016 20:59:21 -0400
+Subject: RELEASE
+
+---
+ configure/RELEASE | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/configure/RELEASE b/configure/RELEASE
+index 6c1a60a..cdeb441 100644
+--- a/configure/RELEASE
++++ b/configure/RELEASE
+@@ -9,23 +9,21 @@
+ #
+ # Add your declarations here
+ 
+-SUPPORT=
+--include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
++SUPPORT=$(EPICS_BASE)
+ 
+ # If any motor controller communication mechanism besides the VME backplane is
+ # required, then ASYN must be defined.
+ # Recommended ASYN release: R4-23
+-ASYN=$(SUPPORT)/asyn/R4-23
++ASYN=$(EPICS_BASE)
+ 
+ # Need the sequencer and the bust record for the MM4005 and XPS trajectory scanning
+ # Recommended SNCSEQ release: R2.1.16
+-SNCSEQ=$(SUPPORT)/seq/seq-2-1-16
++SNCSEQ=$(EPICS_BASE)
+ # Recommended BUSY release: R1-6
+-BUSY=$(SUPPORT)/busy/R1-6
++BUSY=$(EPICS_BASE)
+ 
+ # Recommended EPICS release: R3.14.12.4
+-EPICS_BASE=
+--include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
++EPICS_BASE=/usr/lib/epics
+ 
+ # The following must be defined for the MXmotor device driver.
+ #!MX=$(SUPPORT)/mx/mx
+@@ -35,7 +33,7 @@ EPICS_BASE=
+ # <motor>/Makefile must also be edited.
+ 
+ # Recommended IPAC release: R2-12
+-IPAC=$(SUPPORT)/ipac/R2-12
++#IPAC=$(SUPPORT)/ipac/R2-12
+ 
+ # The following is only needed for the motor examples in iocBoot.
+ #!MOTOR=$(TOP)

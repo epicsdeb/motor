@@ -1,0 +1,31 @@
+From: Michael Davidsaver <mdavidsaver@gmail.com>
+Date: Mon, 4 Apr 2016 21:26:12 -0400
+Subject: disable build of hytec controller
+
+not packaging ipac
+---
+ motorApp/HytecSrc/Makefile | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/motorApp/HytecSrc/Makefile b/motorApp/HytecSrc/Makefile
+index f4e1618..3c61704 100644
+--- a/motorApp/HytecSrc/Makefile
++++ b/motorApp/HytecSrc/Makefile
+@@ -6,14 +6,14 @@ include $(TOP)/configure/CONFIG
+ # Build HytecMotor Module Library
+ # -------------------------------
+ 
+-LIBRARY_IOC += HytecMotor
++#LIBRARY_IOC += HytecMotor
+ 
+-DBD += HytecMotorDriver.dbd
++#DBD += HytecMotorDriver.dbd
+ 
+ # The following are compiled and added to the support library
+ HytecMotor_SRCS += HytecMotorDriver.cpp
+ 
+-INC += HytecMotorDriver.h
++#INC += HytecMotorDriver.h
+ 
+ # We need to link this IOC Application against the EPICS Base libraries
+ HytecMotor_LIBS += motor
