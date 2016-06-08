@@ -1,2 +1,3 @@
 0001-RELEASE.patch
 0002-disable-build-of-hytec-controller.patch
+0003-install-autosave-request-files-at-build.patch
