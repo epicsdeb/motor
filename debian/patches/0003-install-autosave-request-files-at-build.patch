@@ -1,0 +1,30 @@
+From 844318b102da5317e9fff51c9cb985c59b33f446 Mon Sep 17 00:00:00 2001
+From: Daron Chabot <chabot@frib.msu.edu>
+Date: Wed, 8 Jun 2016 13:47:14 -0400
+Subject: [PATCH 1/1] ENH: install autosave request files at build
+
+---
+ motorApp/Db/Makefile | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/motorApp/Db/Makefile b/motorApp/Db/Makefile
+index f872ed3..f519150 100644
+--- a/motorApp/Db/Makefile
++++ b/motorApp/Db/Makefile
+@@ -45,6 +45,13 @@ DB += profileMoveAxisXPS.template
+ DB += PI_Support.db PI_SupportCtrl.db
+ DB += Phytron_motor.db Phytron_I1AM01.db Phytron_MCM01.db
+ 
++# install autosave request files too
++DB += asyn_motor_positions.req asyn_motor_settings.req
++DB += basic_motor_settings.req motor_positions.req motor_settings.req
++DB += EnsemblePSOFly_settings.req pseudoMotor_settings.req
++DB_+= profileMoveAxis_settings.req profileMoveController_settings.req
++DB += profileMoveControllerXPS_settings.req trajectoryScan_settings.req
++
+ #----------------------------------------------------
+ # Declare template files which do not show up in DB
+ #USES_TEMPLATE += motor.template
+-- 
+2.1.4
+
