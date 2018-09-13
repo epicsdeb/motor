@@ -1,5 +1,12 @@
-motor (6.9-1) UNRELEASED; urgency=medium
+motor (6.9-1) unstable; urgency=medium
 
+  [ mdavidsaver ]
   * initial
+
+  [ Michael Davidsaver ]
+  * missing rtems deps
+
+  [ Martin Konrad ]
+  * Use build profile to enable RTEMS cross build
 
  --  mdavidsaver <mdavidsaver@gmail.com>  Thu, 10 Mar 2016 14:44:39 -0500
