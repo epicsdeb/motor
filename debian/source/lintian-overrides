@@ -1,0 +1,20 @@
+motor source: invalid-restriction-formula-in-build-profiles-field <pkg.epics-base.rtems> rtems-motor-mvme2100
+motor source: invalid-restriction-formula-in-build-profiles-field <pkg.epics-base.rtems> rtems-motor-mvme3100
+motor source: invalid-restriction-formula-in-build-profiles-field <pkg.epics-base.rtems> rtems-motor-mvme5500
+motor source: invalid-restriction-formula-in-build-profiles-field <pkg.epics-base.rtems> rtems-motor-pc386
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-epics-mvme2100 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-epics-mvme3100 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-epics-mvme5500 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-epics-pc386 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-asyn-mvme2100 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-asyn-mvme3100 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-asyn-mvme5500 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-asyn-pc386 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-busy-mvme2100 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-busy-mvme3100 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-busy-mvme5500 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-busy-pc386 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-seq-mvme2100 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-seq-mvme3100 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-seq-mvme5500 <pkg.epics-base.rtems>]
+motor source: invalid-profile-name-in-source-relation pkg.epics-base.rtems [build-depends: rtems-seq-pc386 <pkg.epics-base.rtems>]
