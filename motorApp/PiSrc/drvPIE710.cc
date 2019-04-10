@@ -3,9 +3,6 @@ FILENAME...	drvPIE710.cc
 USAGE...	Motor record driver level support for Physik Instrumente (PI)
 	        GmbH & Co. E-710 motor controller.
 
-Version:	$Revision: 1.1 $
-Modified By:	$Author: sullivan $
-Last Modified:	$Date: 2006-10-06 18:18:22 $
 */
 
 /*
@@ -48,6 +45,8 @@ DESIGN LIMITATIONS...
 #include <string.h>
 #include <epicsThread.h>
 #include <drvSup.h>
+#include <stdlib.h>
+#include <errlog.h>
 #include "motorRecord.h"
 #include "motor.h"
 #include "drvPIE710.h"
@@ -352,7 +351,7 @@ static int set_status(int card, int signal)
 	nodeptr->postmsgptr != 0)
     {
 	strcpy(buff, nodeptr->postmsgptr);
-	send_mess(card, buff, (char) NULL);
+	send_mess(card, buff, (char*) NULL);
 	nodeptr->postmsgptr = NULL;
     }
 
@@ -561,7 +560,7 @@ static int motor_init()
 
 	    do
 	    {
-		send_mess(card_index, GET_IDENT, (char) NULL);
+		send_mess(card_index, GET_IDENT, (char*) NULL);
 		status = recv_mess(card_index, buff[0], 1);
 
 		/* Parse out E710 revision (3 decimal places) and convert to int */

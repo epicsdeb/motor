@@ -2,10 +2,6 @@
 FILENAME...	drvMXmotor.cc
 USAGE...	Motor record driver level support for MX device driver.
 
-Version:        $Revision: 14155 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2011-11-29 14:50:00 -0600 (Tue, 29 Nov 2011) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/MXmotorSrc/drvMXmotor.cc $
 */
 
 /*

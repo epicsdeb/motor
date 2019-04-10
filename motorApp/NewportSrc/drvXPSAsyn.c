@@ -2,10 +2,6 @@
 FILENAME...     drvXPSasyn.c
 USAGE...        Newport XPS EPICS asyn motor device driver
 
-Version:        $Revision: 15944 $
-Modified By:    $Author: rivers $
-Last Modified:  $Date: 2013-02-18 14:50:16 -0600 (Mon, 18 Feb 2013) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/NewportSrc/drvXPSAsyn.c $
 */
 
 /*
@@ -616,6 +612,10 @@ static int motorAxisSetDouble(AXIS_HDL pAxis, motorAxisParam_t function, double 
     double positions[XPS_MAX_AXES] = {0.0};
     
     if (pAxis == NULL) return MOTOR_AXIS_ERROR;
+    if (!pAxis->mutexId) {
+      PRINT(pAxis->logParam, MOTOR_ERROR, "motorAxisSetDouble[%d,%d]: invalid mutex ID. Call XPSConfigAxis first for initialization.\n", pAxis->card, pAxis->axis);
+      return MOTOR_AXIS_ERROR;
+    }
     else
     {
       if (epicsMutexLock( pAxis->mutexId ) == epicsMutexLockOK)
@@ -940,6 +940,11 @@ static int motorAxisMove(AXIS_HDL pAxis, double position, int relative,
     double deviceUnits;
 
     if (pAxis == NULL) return MOTOR_AXIS_ERROR;
+
+    if (!pAxis->mutexId) {
+      PRINT(pAxis->logParam, MOTOR_ERROR, "motorAxisMove[%d,%d]: invalid mutex ID. Call XPSConfigAxis first for initialization.\n", pAxis->card, pAxis->axis);
+      return MOTOR_AXIS_ERROR;
+    }
 
     PRINT(pAxis->logParam, FLOW, "Set card %d, axis %d move to %f, min vel=%f, max_vel=%f, accel=%f\n",
           pAxis->card, pAxis->axis, position, min_velocity, max_velocity, acceleration);
