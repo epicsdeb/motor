@@ -2,10 +2,6 @@
 FILENAME...     drvA3200Asyn.h
 USAGE... This file contains Aerotech A3200 Asyn driver "include" information.
 
-Version:        $Revision: 17434 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2014-05-21 11:43:51 -0500 (Wed, 21 May 2014) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/AerotechSrc/drvA3200Asyn.h $
 */
 
 /*
@@ -47,16 +43,16 @@ HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-
 extern "C" {
 #endif
 
-	int A3200AsynSetup(int numControllers); /* number of A3200 controllers in system.  */
+        int A3200AsynSetup(int numControllers); /* number of A3200 controllers in system.  */
 
-	int A3200AsynConfig(int card,             /* Controller number */
-		const char *portName, /* asyn port name of serial or GPIB port */
-		int asynAddress,      /* asyn subaddress for GPIB */
-		int numAxes,          /* The number of axes that the driver controls */
-		int taskNumber,	       /* The task number to use for motion commands */
-		int movingPollPeriod, /* Time to poll (msec) when an axis is in motion */
-		int idlePollPeriod);  /* Time to poll (msec) when an axis is idle. 0 for no polling */
-
+        int A3200AsynConfig(int card,             /* Controller number */
+                const char *portName, /* asyn port name of serial or GPIB port */
+                int asynAddress,      /* asyn subaddress for GPIB */
+                int numAxes,          /* The number of axes that the driver controls */
+                int movingPollPeriod, /* Time to poll (msec) when an axis is in motion */
+                int idlePollPeriod,   /* Time to poll (msec) when an axis is idle. 0 for no polling */
+                int taskNumber,       /* the task number to use for motion commands */
+                int linear);          /* linear (1) or single-axis (0) move commands. */
 #ifdef __cplusplus
 }
 #endif

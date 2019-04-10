@@ -2,10 +2,6 @@
 FILENAME... drvPM500.cc
 USAGE...    Motor record driver level support for Newport PM500.
 
-Version:        $Revision: 15617 $
-Modified By:    $Author: rivers $
-Last Modified:  $Date: 2012-12-06 16:17:36 -0600 (Thu, 06 Dec 2012) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/NewportSrc/drvPM500.cc $
 */
 
 /* Device Driver Support routines for PM500 motor controller */
@@ -59,6 +55,8 @@ HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-
 #include <math.h>
 #include <epicsThread.h>
 #include <drvSup.h>
+#include <stdlib.h>
+#include <errlog.h>
 #include "motor.h"
 #include "NewportRegister.h"
 #include "drvMMCom.h"
@@ -238,7 +236,7 @@ static int set_status(int card, int signal)
 
     /* Request the status and position of this motor */
     sprintf(buff, "%sR", axis_name);
-    send_mess(card, buff, (char) NULL);
+    send_mess(card, buff, (char*) NULL);
     rtnval = recv_mess(card, response, 1);
     if (rtnval > 0)
     {
@@ -288,7 +286,7 @@ static int set_status(int card, int signal)
 
     /* Set Motor On/Off status */
     sprintf(buff, "%sM?", axis_name);
-    send_mess(card, buff, (char) NULL);
+    send_mess(card, buff, (char*) NULL);
     rtnval = recv_mess(card, response, 1);
     status.Bits.EA_POSITION = (int) atof(&response[2]);
 
@@ -338,7 +336,7 @@ static int set_status(int card, int signal)
     {
         strcpy(buff, nodeptr->postmsgptr);
         strcat(buff, "\r");
-        send_mess(card, buff, (char) NULL);
+        send_mess(card, buff, (char*) NULL);
         nodeptr->postmsgptr = NULL;
     }
 
@@ -545,7 +543,7 @@ static int motor_init()
             pasynOctetSyncIO->flush(cntrl->pasynUser);
 
             /* Send a SCUM 1 command to put device in this mode. */
-            send_mess(card_index, "SCUM 1", (char) NULL);
+            send_mess(card_index, "SCUM 1", (char*) NULL);
             recv_mess(card_index, buff, 1);
 
             /* Set up basic controller parameters
@@ -566,12 +564,12 @@ static int motor_init()
              *   Bit 13=0, Eearly serial poll mapping
              *   Bit 14=0, No SRQ assertion
              */
-            send_mess(card_index, "SENAINT $AF", (char) NULL);
+            send_mess(card_index, "SENAINT $AF", (char*) NULL);
             recv_mess(card_index, buff, 1);
 
             /* Send a message and read response from controller to see if
              * it exists */
-            send_mess(card_index, GET_IDENT, (char) NULL);
+            send_mess(card_index, GET_IDENT, (char*) NULL);
             status = recv_mess(card_index, buff, 1);
             /* Return value is length of response string */
         }
@@ -580,7 +578,7 @@ static int motor_init()
         {
             brdptr->localaddr = (char *) NULL;
             brdptr->motor_in_motion = 0;
-            send_mess(card_index, GET_IDENT, (char) NULL);  /* Read controller ID string */
+            send_mess(card_index, GET_IDENT, (char*) NULL);  /* Read controller ID string */
             recv_mess(card_index, buff, 1);
             strncpy(brdptr->ident, &buff[2], 50);  /* Skip "XD" */
 
@@ -591,7 +589,7 @@ static int motor_init()
                 int axis_name = (int) *PM500_axis_names[total_axis];
                 brdptr->motor_info[total_axis].motor_motion = NULL;
                 sprintf(buff, "%cSTAT?", axis_name);
-                send_mess(card_index, buff, (char) NULL);
+                send_mess(card_index, buff, (char*) NULL);
                 recv_mess(card_index, buff, 1);
                 if (buff[1] == 'E')
                     break;
@@ -616,7 +614,7 @@ static int motor_init()
                 double res = 0.0;
 
                 sprintf(buff, "%sCONFIG?", axis_name);
-                send_mess(card_index, buff, (char) NULL);
+                send_mess(card_index, buff, (char*) NULL);
                 recv_mess(card_index, buff, 1);
                 firmware = &buff[8];
                 Debug(3, "motor_init: firmware = %s\n", firmware);

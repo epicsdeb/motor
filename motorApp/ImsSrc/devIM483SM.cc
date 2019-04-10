@@ -3,10 +3,6 @@ FILENAME...	devIM483SM.cc
 USAGE...	Motor record device level support for Intelligent Motion
 		Systems, Inc. IM483(I/IE).
 
-Version:	$Revision: 16590 $
-Modified By:	$Author: sluiter $
-Last Modified:	$Date: 2013-06-17 09:20:08 -0500 (Mon, 17 Jun 2013) $
-HeadURL:	$URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/ImsSrc/devIM483SM.cc $
 */
 
 /*
@@ -45,6 +41,7 @@ HeadURL:	$URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motor
  */
 
 #include <string.h>
+#include <errlog.h>
 #include "motorRecord.h"
 #include "motor.h"
 #include "motordevCom.h"
@@ -57,7 +54,7 @@ extern struct driver_table IM483SM_access;
 
 /* ----------------Create the dsets for devIM483SM----------------- */
 STATIC struct driver_table *drvtabptr;
-STATIC long IM483SM_init(void *);
+STATIC long IM483SM_init(int);
 STATIC long IM483SM_init_record(void *);
 STATIC long IM483SM_start_trans(struct motorRecord *);
 STATIC RTN_STATUS IM483SM_build_trans(motor_cmnd, double *, struct motorRecord *);
@@ -111,12 +108,11 @@ static struct board_stat **IM483SM_cards;
 
 
 /* initialize device support for IM483SM stepper motor */
-STATIC long IM483SM_init(void *arg)
+STATIC long IM483SM_init(int after)
 {
     long rtnval;
-    int after = (arg == 0) ? 0 : 1;
 
-    if (after == 0)
+    if (!after)
     {
 	drvtabptr = &IM483SM_access;
 	(drvtabptr->init)();

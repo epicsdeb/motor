@@ -2,10 +2,6 @@
 FILENAME...     devOmsPC68.c
 USAGE...        Motor record device level support for OMS VME58.
 
-Version:        $Revision: 10834 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2010-04-29 12:04:39 -0500 (Thu, 29 Apr 2010) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/OmsSrc/devOmsPC68.cc $
 */
 
 /*
@@ -63,14 +59,14 @@ extern int OmsPC68_num_cards;
 extern struct driver_table OmsPC68_access;
 
 /* ----------------Create the dsets for devOMS----------------- */
-STATIC long oms_init(void *);
+STATIC long oms_init(int);
 STATIC long oms_init_record(void *);
 STATIC long oms_start_trans(struct motorRecord *);
 STATIC RTN_STATUS oms_end_trans(struct motorRecord *);
 
 struct motor_dset devOmsPC68 =
 {
-    {8, NULL, oms_init, oms_init_record, NULL},
+    {8, NULL, (DEVSUPFUN) oms_init, (DEVSUPFUN) oms_init_record, NULL},
     motor_update_values,
     oms_start_trans,
     oms_build_trans,
@@ -84,10 +80,8 @@ STATIC const char errmsg[] = {"\n\n!!!ERROR!!! - OmsPC68 driver uninitialized.\n
 
 //__________________________________________________________________________________________
 
-STATIC long oms_init(void *arg)
+STATIC long oms_init(int after)
 {
-    int after = (arg == 0) ? 0 : 1;
-
     if (*(OmsPC68_access.init_indicator) == NO)
     {
         errlogSevPrintf(errlogMinor, "%s", errmsg);
