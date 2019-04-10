@@ -2,11 +2,6 @@
 FILENAME... drvMCDC2805.cc
 USAGE...    Motor record driver level support for Faulhaber MCDC2805
 
-Version:        $Revision: 14155 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2011-11-29 14:50:00 -0600 (Tue, 29 Nov 2011) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/FaulhaberSrc/drvMCDC2805.cc $
-Last Modified:  $Date: 2011-11-29 14:50:00 -0600 (Tue, 29 Nov 2011) $
 */
 
 /*
@@ -52,6 +47,7 @@ DESIGN LIMITATIONS...
 #include <string.h>
 #include <epicsThread.h>
 #include <drvSup.h>
+#include <errlog.h>
 #include "motor.h"
 #include "drvMCDC2805.h"
 #include "asynOctetSyncIO.h"

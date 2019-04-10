@@ -23,6 +23,8 @@
 #include <string.h>
 #include <epicsThread.h>
 #include <drvSup.h>
+#include <stdlib.h>
+#include <errlog.h>
 #include "motor.h"
 #include "drvMicos.h"
 #include "epicsExport.h"
@@ -284,7 +286,7 @@ static int set_status(int card, int signal)
     nodeptr->postmsgptr != 0)
     {
         strcpy(buff, nodeptr->postmsgptr);
-        send_mess(card, buff, (char) NULL);
+        send_mess(card, buff, (char*) NULL);
         /* The Micos will not send back a response for a 'set' command, don't need next line */
         /* recv_mess(card, buff, WAIT); */
         nodeptr->postmsgptr = NULL;

@@ -3,10 +3,6 @@ FILENAME... drvIM483PL.cc
 USAGE...    Motor record driver level support for Intelligent Motion
         Systems, Inc. IM483(I/IE).
 
-Version:        $Revision: 14155 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2011-11-29 14:50:00 -0600 (Tue, 29 Nov 2011) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/ImsSrc/drvIM483PL.cc $
 */
 
 /*****************************************************************
@@ -60,6 +56,8 @@ DESIGN LIMITATIONS...
 #include <string.h>
 #include <epicsThread.h>
 #include <drvSup.h>
+#include <stdlib.h>
+#include <errlog.h>
 #include "motor.h"
 #include "drvIM483.h"
 #include "asynOctetSyncIO.h"

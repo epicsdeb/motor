@@ -36,6 +36,8 @@
 #include    <epicsThread.h>
 #include    <epicsString.h>
 #include    <drvSup.h>
+#include    <stdlib.h>
+#include    <errlog.h>
 #include        "motor.h"
 #include        "drvPM304.h"
 #include        "asynOctetSyncIO.h"
@@ -331,7 +333,7 @@ STATIC int set_status(int card, int signal)
     {
         strcpy(buff, nodeptr->postmsgptr);
         strcat(buff, "\r");
-        send_mess(card, buff, (char) NULL);
+        send_mess(card, buff, (char*) NULL);
         nodeptr->postmsgptr = NULL;
     }
 

@@ -2,10 +2,6 @@
 FILENAME...     drvOms.cc
 USAGE...        Driver level support for OMS models VME8, VME44, VS4 and VX2.
 
-Version:        $Revision: 17104 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2013-11-15 13:44:42 -0600 (Fri, 15 Nov 2013) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/OmsSrc/drvOms.cc $
 */
 
 /*
@@ -114,6 +110,8 @@ HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-
 #include        <epicsInterrupt.h>
 #include        <epicsExit.h>
 #include        <epicsEvent.h>
+#include        <errlog.h>
+#include        <stdlib.h>
 
 #include        "motor.h"
 #include        "drvOms.h"
@@ -924,7 +922,7 @@ static int motorIsrEnable(int card)
         long status;
         status = pdevLibVirtualOS->pDevConnectInterruptVME(
                                                           omsInterruptVector + card,
-#if LT_EPICSBASE(3,14,8)
+#if LT_EPICSBASE(3,14,8,0)
                                                           (void (*)()) motorIsr,
 #else
                                                           (void (*)(void *)) motorIsr,
@@ -1013,7 +1011,7 @@ static void motorIsrDisable(int card)
 /*****************************************************/
 RTN_STATUS
 omsSetup(int num_cards,  /* maximum number of cards in rack */
-         void *addrs,    /* Base Address(0x0-0xb000 on 4K boundary) */
+         void *addrs,    /* Base Address(see README for details) */
          unsigned vector,/* noninterrupting(0), valid vectors(64-255) */
          int int_level,  /* interrupt level (1-6) */
          int scan_rate)  /* polling rate - 1-60 Hz */
@@ -1172,16 +1170,16 @@ static int motor_init()
             irqdata->irqEnable = FALSE;
             pmotor->control = IRQ_RESET_ID;
 
-            send_mess(card_index, "EF", (char) NULL);
-            send_mess(card_index, ERROR_CLEAR, (char) NULL);
-            send_mess(card_index, STOP_ALL, (char) NULL);
+            send_mess(card_index, "EF", (char*) NULL);
+            send_mess(card_index, ERROR_CLEAR, (char*) NULL);
+            send_mess(card_index, STOP_ALL, (char*) NULL);
 
-            send_mess(card_index, GET_IDENT, (char) NULL);
+            send_mess(card_index, GET_IDENT, (char*) NULL);
 
             recv_mess(card_index, (char *) pmotorState->ident, 1);
             Debug(3, "Identification = %s\n", pmotorState->ident);
 
-            send_mess(card_index, ALL_POS, (char) NULL);
+            send_mess(card_index, ALL_POS, (char*) NULL);
             recv_mess(card_index, axis_pos, 1);
 
             for (total_axis = 0, pos_ptr = epicsStrtok_r(axis_pos, ",", &tok_save);

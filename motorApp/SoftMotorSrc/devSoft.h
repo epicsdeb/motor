@@ -4,10 +4,6 @@ FILENAME..	devSoft.h
 USAGE... 	This file contains information that is common to
 		all Soft channel device support modules.
 
-Version:        $Revision: 10365 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2010-03-25 12:12:41 -0500 (Thu, 25 Mar 2010) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/SoftMotorSrc/devSoft.h $
 */
 
 /*
@@ -58,7 +54,7 @@ struct motor_node {
     struct motorRecord *pmr;
 };
 
-extern long soft_init(void *);
+extern long soft_init(int);
 extern long soft_init_record(void *);
 extern void soft_dinp_func(struct motorRecord *, short);
 extern void soft_rdbl_func(struct motorRecord *, double);
