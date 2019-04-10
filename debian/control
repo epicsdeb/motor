@@ -24,14 +24,14 @@ Build-Depends: debhelper (>= 9.20141010), dpkg-dev (>=1.17.14),
                rtems-seq-mvme5500 <pkg.epics-base.rtems>,
                rtems-seq-pc386 <pkg.epics-base.rtems>,
 XS-Rtems-Build-Depends: rtems-epics, rtems-asyn, rtems-busy, rtems-seq,
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: http://aps.anl.gov/bcda/synApps/motor/index.html
 Vcs-Git: https://github.com/epicsdeb/motor.git
 Vcs-Browser: https://github.com/epicsdeb/motor
 
 Package: epics-motor-dev
 Architecture: any
-Depends: libmotor6.9 (= ${binary:Version}),
+Depends: libmotor6.11 (= ${binary:Version}),
          ${shlibs:Depends}, ${misc:Depends},
          ${epics:Depends},
 Conflicts: epics-synapps,
@@ -40,7 +40,7 @@ Description: Motor controller drivers
  .
  This package contains headers and libraries needed at build time.
 
-Package: libmotor6.9
+Package: libmotor6.11
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
 Conflicts: epics-synapps,
