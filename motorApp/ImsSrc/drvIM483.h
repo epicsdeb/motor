@@ -3,10 +3,6 @@ FILENAME...	drvIM483.h
 USAGE... This file contains driver "include" information that is specific to
 	Intelligent Motion Systems, Inc. IM483(I/IE) and MDrive controllers.
 
-Version:	$Revision: 16590 $
-Modified By:	$Author: sluiter $
-Last Modified:	$Date: 2013-06-17 09:20:08 -0500 (Mon, 17 Jun 2013) $ 
-HeadURL:	$URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/ImsSrc/drvIM483.h $ 
 */
 
 /*

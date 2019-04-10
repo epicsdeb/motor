@@ -2,10 +2,6 @@
 FILENAME...     drvSC800.cc
 USAGE...        Motor record driver level support for Kohzu SC800                
 
-Version:        $Revision: 14155 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2011-11-29 14:50:00 -0600 (Tue, 29 Nov 2011) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/KohzuSrc/drvSC800.cc $
 
 */
 
@@ -49,6 +45,8 @@ HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-
 #include <epicsThread.h>
 #include <drvSup.h>
 #include <iocsh.h>
+#include <errlog.h>
+#include <stdlib.h>
 #include "motor.h"
 #include "motorRecord.h"
 #include "drvSC800.h"
@@ -223,7 +221,7 @@ static int set_status(int card, int signal)
 	charcnt = recv_mess(card, buff, FLUSH);
 
     sprintf(buff,"STR1/%d",(signal + 1));
-    send_mess(card, buff, (char) NULL);		/*  Tell Status */
+    send_mess(card, buff, (char*) NULL);		/*  Tell Status */
     charcnt = recv_mess(card, buff, 1);
     convert_cnt = sscanf(buff, "C\tSTR%d\t1\t%d\t%d\t%d\t%d\t%d\t%d\t%d",
                          &str_axis, &str_move, &str_norg, &str_orgg,
@@ -258,7 +256,7 @@ static int set_status(int card, int signal)
 
    /* Parse motor position */
     sprintf(buff,"RDP%d/0", (signal + 1));
-    send_mess(card, buff, (char) NULL);  /*  Tell Position */
+    send_mess(card, buff, (char*) NULL);  /*  Tell Position */
     recv_mess(card, buff, 1);
     convert_cnt = sscanf(buff, "C\tRDP%d\t%d", &str_axis, &motorData);
     
@@ -287,7 +285,7 @@ static int set_status(int card, int signal)
 
     /* Torque enabled? */
     sprintf(buff,"RSY%d/21", (signal + 1));
-    send_mess(card, buff, (char) NULL);  /*  Tell Position */
+    send_mess(card, buff, (char*) NULL);  /*  Tell Position */
     recv_mess(card, buff, 1);
     convert_cnt = sscanf(buff, "C\tRSY%d\t21\t%d", &str_axis, &str_move);
     status.Bits.EA_POSITION = (str_move == 0) ? 1 : 0;
@@ -329,7 +327,7 @@ static int set_status(int card, int signal)
 	nodeptr->postmsgptr != 0)
     {
 	strcpy(buff, nodeptr->postmsgptr);
-	send_mess(card, buff, (char) NULL);
+	send_mess(card, buff, (char*) NULL);
 	nodeptr->postmsgptr = NULL;
     }
 

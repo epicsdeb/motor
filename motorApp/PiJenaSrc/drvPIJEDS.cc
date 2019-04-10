@@ -3,10 +3,6 @@ FILENAME...	drvPIJEDS.cc
 USAGE...	Motor record driver level support for piezosystem jena
 	        GmbH & Co. E-516 motor controller.
 
-Version:        $Revision: 14155 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2011-11-29 14:50:00 -0600 (Tue, 29 Nov 2011) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/PiJenaSrc/drvPIJEDS.cc $*/
 
 /*
  *      Original Author: Joe Sullivan
@@ -48,6 +44,8 @@ DESIGN LIMITATIONS...
 #include <math.h>
 #include <epicsThread.h>
 #include <drvSup.h>
+#include <stdlib.h>
+#include <errlog.h>
 #include "motorRecord.h"
 #include "motor.h"
 #include "drvPIJEDS.h"
@@ -392,7 +390,7 @@ static int set_status(int card, int signal)
 	nodeptr->postmsgptr != 0)
     {
 	strcpy(buff, nodeptr->postmsgptr);
-	send_mess(card, buff, (char) NULL);
+	send_mess(card, buff, (char*) NULL);
 	nodeptr->postmsgptr = NULL;
     }
 
@@ -614,7 +612,7 @@ static int motor_init()
 	    {
 	      online = false;
 	      /* Set Controller to ONLINE mode */
-	      send_mess(card_index, GET_IDENT, (char) NULL);
+	      send_mess(card_index, GET_IDENT, (char*) NULL);
 	      if ((status = recv_mess(card_index, buff, 1)))
 		online = (strstr(buff,"DSM")) ? true : false;
 	      else

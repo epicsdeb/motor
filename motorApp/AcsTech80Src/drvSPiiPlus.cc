@@ -3,10 +3,6 @@ FILENAME...	drvSPiiPlus.cc
 USAGE...	Motor record driver level support for ACS Tech80 
                 SPiiPlus
 
-Version:        $Revision: 14155 $
-Modified By:    $Author: sluiter $
-Last Modified:  $Date: 2011-11-29 14:50:00 -0600 (Tue, 29 Nov 2011) $
-HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-9/motorApp/AcsTech80Src/drvSPiiPlus.cc $
 
 */
 
@@ -51,6 +47,8 @@ HeadURL:        $URL: https://subversion.xray.aps.anl.gov/synApps/motor/tags/R6-
 #include <epicsThread.h>
 #include <epicsString.h>
 #include <drvSup.h>
+#include <errlog.h>
+#include <stdlib.h>
 #include "motor.h"
 #include "ACSTech80Register.h"
 #include "drvSPiiPlus.h"
@@ -406,7 +404,7 @@ static int set_status(int card, int signal)
 	nodeptr->postmsgptr != 0)
     {
         strncpy(send_buff, nodeptr->postmsgptr, 80);
-	send_mess(card, send_buff, (char) NULL);
+	send_mess(card, send_buff, (char*) NULL);
 	nodeptr->postmsgptr = NULL;
     }
 
